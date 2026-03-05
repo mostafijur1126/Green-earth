@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind and daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body class="">
+    <nav class="bg-[#15803D]">
+        <div class="navbar  shadow-sm w-11/12 m-auto">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul tabindex="-1"
+                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li><a>About</a></li>
+                        <li><a>Gallery</a></li>
+                        <li><a>Plant a Tree</a></li>
+                    </ul>
+                </div>
+                <a class="text-xl text-white">Green Earth</a>
+            </div>
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 text-white">
+                    <li><a>About</a></li>
+                    <li><a>Gallery</a></li>
+                    <li><a>Plant a Tree</a></li>
+                </ul>
+            </div>
+            <div class="navbar-end ">
+                <a class="btn bg-[#FACC15] border-0 rounded-full text-[#15803D]">Plant a Tree</a>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="flex justify-center lg:justify-between text-center bg-[#CFF0DC] ">
+            <img class="hidden lg:block" src="assets/hero-leaf1.png" alt="">
+            <div class="banner-title space-y-5 pt-20 pb-10">
+                <h1 class="text-4xl md:text-5xl font-bold z-10">Plant a Tree, Grow a Future</h1>
+                <p class="text-gray-600">Join our mission to plant 1 million trees and make the Earth greener for future
+                    <br> generations.
+                </p>
+                <button class="btn bg-[#FACC15] border-0 rounded-full text-[#15803D]">Get Involved</button>
+            </div>
+            <img class="hidden lg:block" src="assets/hero-leaf2.png" alt="">
+        </div>
+    </section>
+
+    <section class=" bg-[#F0FDF4]">
+        <div class="maincontainer py-20 bg-[#F0FDF4] w-11/12 m-auto">
+            <h1 class="text-center text-3xl font-bold pb-7">Choose Your Trees</h1>
+            <div class="tree-section-wrapper grid grid-cols-12 gap-10">
+                <div class="catagoris col-span-3">
+                    <h1 class="font-bold pb-3">Categories</h1>
+                    <div class="space-y-3">
+                        <button id="allTrees" class="btn btn-outline btn-success w-full">All Trees</button>
+                        <div id="catagorisContainer" class="space-y-3">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-Wrapper col-span-6">
+                    <div id="cardsContainer" class=" tree-cards grid grid-cols-3 gap-5 ">
+                        
+                    </div>
+                    <!-- loading spener -->
+                     <div id="loadingSpenner" class="hidden h-[50vh] flex justify-center items-center">
+                        <span class="loading loading-spinner loading-xl"></span>
+                     </div>
+
+                </div>
+                <div class="your-cart col-span-3">
+                    <h1 class="font-bold pb-3">Cart</h1>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
