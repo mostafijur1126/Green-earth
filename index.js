@@ -1,10 +1,20 @@
 const catagorisContainer = document.getElementById("catagorisContainer");
 const cardsContainer = document.getElementById("cardsContainer");
+const loadingSpenner = document.getElementById("loadingSpenner");
+const allTrees = document.getElementById("allTrees");
 
 
 // fetch("https://openapi.programming-hero.com/api/categories")
 // .then((res) => res.json())
 // .then((data)=> console.log(data.categories)); 
+
+function ShowLoding(){
+    loadingSpenner.classList.remove("hidden");
+    cardsContainer.innerHTML="";
+};
+function hideLoding(){
+    loadingSpenner.classList.add("hidden");
+}
 
 async function loadCatagoris() {
     const res = await fetch("https://openapi.programming-hero.com/api/categories");
@@ -17,12 +27,45 @@ function displayCatagoris(catagoris) {
     catagoris.forEach(catagori => {
         const btn = document.createElement("button");
         btn.className = "btn btn-outline btn-success w-full";
-        btn.innerText = catagori.category_name
+        btn.innerText = catagori.category_name;
+        btn.onclick = () => activeBtn(catagori.id, btn);
         catagorisContainer.append(btn);
+        // console.log(catagori)
     });
 };
 
+async function activeBtn(id, btn){
+    ShowLoding();
+    const allBtns = document.querySelectorAll("#catagorisContainer button , #allTrees");
+    allBtns.forEach(allBtn => {
+        allBtn.classList.remove("btn-active");
+        allBtn.classList.add("btn-outline");
+    });
+    
+    btn.classList.add("btn-active");
+    btn.classList.remove("btn-outline");
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`);
+    const data = await res.json();
+    displayTrees(data.plants);
+    hideLoding();
+    // console.log(data);
+}
+
+allTrees.addEventListener("click", ()=>{
+    const allBtns = document.querySelectorAll("#catagorisContainer button , #allTrees");
+    allBtns.forEach(allBtn => {
+        allBtn.classList.remove("btn-active");
+        allBtn.classList.add("btn-outline");
+    });
+    
+    allTrees.classList.add("btn-active");
+    allTrees.classList.remove("btn-outline");
+    loadTreeCards();
+})
+
 async function loadTreeCards() {
+    ShowLoding();
     const res = await fetch("https://openapi.programming-hero.com/api/plants");
     const data = await res.json();
     displayTrees(data.plants);
@@ -30,6 +73,7 @@ async function loadTreeCards() {
 loadTreeCards();
 
 function displayTrees(trees) {
+    cardsContainer.innerHTML="";
     trees.forEach(tree => {
         const treeCard = document.createElement("div");
         treeCard.className = "card bg-base-100 shadow-sm";
@@ -51,6 +95,6 @@ function displayTrees(trees) {
                         </div>
         `;
         cardsContainer.append(treeCard);
-        console.log(tree)
     });
+    hideLoding();
 }
