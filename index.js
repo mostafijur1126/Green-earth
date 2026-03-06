@@ -2,6 +2,13 @@ const catagorisContainer = document.getElementById("catagorisContainer");
 const cardsContainer = document.getElementById("cardsContainer");
 const loadingSpenner = document.getElementById("loadingSpenner");
 const allTrees = document.getElementById("allTrees");
+const treeDetailsModal = document.getElementById("tree_details_modal");
+
+const modalTitle =document.getElementById("modalTitle");
+const modalImage =document.getElementById("modalImage");
+const modalCatagory =document.getElementById("modalCatagory");
+const modalDiscription =document.getElementById("modalDiscription");
+const modalPrice =document.getElementById("modalPrice");
 
 
 // fetch("https://openapi.programming-hero.com/api/categories")
@@ -64,14 +71,6 @@ allTrees.addEventListener("click", ()=>{
     loadTreeCards();
 })
 
-async function loadTreeCards() {
-    ShowLoding();
-    const res = await fetch("https://openapi.programming-hero.com/api/plants");
-    const data = await res.json();
-    displayTrees(data.plants);
-}
-loadTreeCards();
-
 function displayTrees(trees) {
     cardsContainer.innerHTML="";
     trees.forEach(tree => {
@@ -83,7 +82,7 @@ function displayTrees(trees) {
                                 alt="Shoes" class="h-48 w-full object-cover"/>
                         </figure>
                         <div class="card-body">
-                            <h2 class="card-title">${tree.name}</h2>
+                            <h2 class="card-title" onclick="openTreeModal(${tree.id})">${tree.name}</h2>
                             <p class="line-clamp-2">${tree.description}</p>
                             <div class="flex justify-between">
                                 <div class="badge badge-soft badge-success">${tree.category}</div>
@@ -98,3 +97,35 @@ function displayTrees(trees) {
     });
     hideLoding();
 }
+
+async function loadTreeCards() {
+    ShowLoding();
+    const res = await fetch("https://openapi.programming-hero.com/api/plants");
+    const data = await res.json();
+    displayTrees(data.plants);
+}
+loadTreeCards();
+
+async function openTreeModal (id){
+    const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
+    const data = await res.json();
+    const plantDetails = data.plants;
+
+    modalTitle.textContent = plantDetails.name;
+    modalImage.src = plantDetails.image;
+    modalCatagory.textContent = plantDetails.category;
+    modalDiscription.textContent = plantDetails.description;
+    modalPrice.textContent = plantDetails.price;
+    treeDetailsModal.showModal();
+
+}
+
+
+// {
+//     "id": 1,
+//     "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
+//     "name": "Mango Tree",
+//     "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
+//     "category": "Fruit Tree",
+//     "price": 500
+// }

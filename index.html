@@ -73,7 +73,7 @@
     <section class=" bg-[#F0FDF4] py-20">
         <div class="maincontainer  bg-[#F0FDF4] w-11/12 m-auto">
             <h1 class="text-center text-3xl font-bold pb-7">Choose Your Trees</h1>
-            <div class="tree-section-wrapper grid grid-cols-12 gap-10">
+            <div class="tree-section-wrapper grid-cols-1 grid md:grid-cols-12 gap-10">
                 <div class="catagoris col-span-3">
                     <h1 class="font-bold pb-3">Categories</h1>
                     <div class="space-y-3 sticky top-10">
@@ -83,30 +83,62 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-Wrapper col-span-6">
-                    <div id="cardsContainer" class=" tree-cards grid grid-cols-3 gap-5 ">
-                        
+                <div class="card-Wrapper col-span-3 md:col-span-6">
+                    <div id="cardsContainer" class=" tree-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+
                     </div>
                     <!-- loading spener -->
-                     <div id="loadingSpenner" class="hidden h-[50vh] flex justify-center items-center">
+                    <div id="loadingSpenner" class="hidden h-[50vh] flex justify-center items-center">
                         <span class="loading loading-spinner loading-xl"></span>
-                     </div>
+                    </div>
 
                 </div>
                 <div class="your-cart col-span-3">
                     <h1 class="font-bold pb-3">Cart</h1>
                 </div>
             </div>
+
+            <!-- Box Modal -->
+            <!-- Open the modal using ID.showModal() method -->
+            <dialog id="tree_details_modal" class="modal">
+                <div class="modal-box">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-2xl text-green-700" id="modalTitle">Tree Details</h3>
+                        <button class="btn btn-sm btn-circle btn-ghost"
+                        onclick="document.getElementById('tree_details_modal').close()">X</button>
+                    </div>
+                    <div class="gap-6">
+                        <!-- plant img -->
+                        <img id="modalImage" src="" alt="Plant" class="w-full !h-[250px] object-cover rounded-lg mb-12">
+                        <!-- plant details -->
+                         <div>
+                            <p class="text-sm text-gray-500 mb-2">
+                                <span class="font-bold">catagory:</span>
+                                <span id="modalCatagory" class="badge badge-primary"></span>
+                            </p>
+                            <p class="text-sm text-gray-600 mb-4">
+                                <span id="modalDiscription"></span>
+                            </p>
+                            <div class="flex items-baseline gap-2 mb-6">
+                                <span class="text-3xl font-bold text-green-600">$ <span id="modalPrice">0</span></span>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </dialog>
+
         </div>
 
-        <div class="about-section w-6/12 m-auto">
-            <h1 class="text-center text-5xl font-bold py-10">About the Campaign</h1>
-            <div class="about-info grid grid-cols-2 gap-10 items-center">
+        <div class="about-section w-11/12 md:w-6/12 m-auto">
+            <h1 class="text-center text-3xl md:text-5xl font-bold py-10">About the Campaign</h1>
+            <div class="about-info grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <div class="about-img">
                     <img src="assets/about.png" alt="">
                 </div>
                 <div class="about-text space-y-5">
-                    <p>Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.</p>
+                    <p>Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since
+                        our start, we’ve planted over 500,000 trees worldwide. By joining our campaign, you help restore
+                        forests, create habitats for wildlife, and combat global warming.</p>
                     <ul>
                         <li>Restoration of natural habitats</li>
                         <li>Improvement of air quality</li>
